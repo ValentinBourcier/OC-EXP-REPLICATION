@@ -57,6 +57,16 @@ For each case, we justify our decision in a comment that is saved as metadata as
 We decide that a detected interruption is really an interruption only if we have strong evidence that this is really an interruption time.
 For example, if the participant mentionned in their answer that they had a precise interruption, or if the interruption clearly appear in the logs (*e.g.*, a 24 hours gap is clearly an interruption).
 
+**Case 5**
+The detected `interruption` time is lower than the `declaredInterruption`, for example
+
+Examples:
+- `interruption` = 2 minutes and `declaredInterruption` = "Up to 5 minutes".
+- `interruption` = 6 minutes and `declaredInterruption` = "up to 10 minutes" or "more than 10 minutes".
+It is possible participant declared a safe interruption time because they lost track of it or because they estimate that time wrongly.
+In any cases, we cannot decide anything on a declared time that is not detected by the system.
+Therefore we treat these cases as **case 1** occurences, *i.e.*, we deduce the detected `interruption` time.
+
 
 ## Procedure setup
 
@@ -75,3 +85,29 @@ It is possible that participants have a biased appreciation of their interruptio
 
 It is also possible that a detected a time gap was in fact the participant taking notes however.
 If we have a doubt and cannot strongly backup the claim that the detected time gap was an interruption, we do not count that time gap as an interruption.
+
+## Examples
+
+Case 4: computed and declared interruption are not consistent.
+The participant spends about 38 seconds outside the system windows without doing anything.
+However just after the participant moves their mouse over a text editor and starts navigating. 
+It is possible that the participant was reading that text editor.
+Decision:  not an  interruption.
+
+Case 4: computed and declared interruption are not consistent.
+The participant moves their mouse oveer items in a list, with an interruption of 35 seconds.
+This case cannot be decided with any strong argument.
+Decision: not an interruption.
+
+Case 4: computed and declared interruption are not consistent.
+The participant is reading.
+Decision: not an interruption.
+
+Case 4: computed and declared interruption are not consistent.
+The participant spends about 3 minutes outside the system windows without doing anything.
+Decision:  interruption.
+
+
+Each time there is an immediate (by checking time) text editor, a read event, or that such event follows the event gap, we consider that the participant is reading.
+
+In some cases we can't detect the declared time by the participant and we can't make a decision to deduce time while analyzing the detection. In that case we trust the participant and we force the retained idle time as a case 2 ==> redo a complete pass over these cases
