@@ -16,6 +16,18 @@ I had to find a discriminating factor, to be able to basically do OCD debugging.
 I'm now coding in Pharo for around 1 year, so I'm still learning what some methods do and what's Pharo's behaviour in different situations, so I believe this may have impacted my performance negatively in the experiment. Besides that, I understood how the features you suggested work, even though I feel my lack of knowledge in Pharo in general made me had trouble applying your feature to solve real problems.
 ```
 
+## From informal feedback
+
+
+```
+tu ne sais pas si tu as déjà rencontré le bug quand tu trouves l'objet
+```
+```
+tu ne sais pas quel objet est la source parfois (exemple, on avait un bug graphique avec plein de petits composants visuels imbriqués et on ne savait pas le responsable)
+```
+
+```My biggest pain was that I didn't find a good reason to setup object centric breakpoint for case, where object was incorrectly setup during initialization of the object.  E.g. When I did exercise from OCD experiment, the error came from early initialization of object (when object was created from some other class iterating over stream).  So halt on call, or halt on write was never triggered, since change of inst var did happen during initialization and breakpoint was never invoked again.  
+```
 
 
 ## With Lights Out task as treatment
