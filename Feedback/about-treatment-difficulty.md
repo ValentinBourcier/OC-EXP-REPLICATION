@@ -1,4 +1,4 @@
-
+This file compiles all experiment feedback that reports specific difficulties on the treatment tasks, using the object-centric breakpoints. It also adds informal feedback (personal messages or emails sent to researchers just after performing the experiment) reporting similar information.
 
 ## In general
 
