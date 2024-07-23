@@ -14,7 +14,7 @@ We collect 3 information to recover the time `totalTime` spent on a task:
   
 To compute the time spent for a participant, we apply the following manual procedure.
 
-**Case 1**
+**Case 1 (145 detected)**
 `interruption` and `declaredInterruption` are consistent, we consider that the computed interruption time as reference:
 ```Smalltalk
 totalTime := duration - interruption
@@ -25,7 +25,7 @@ Examples:
 - `interruption` = 3 minutes and `declaredInterruption` = "1-2 minutes". We count 3 minutes of interruption.
 
 
-**Case 2**
+**Case 2 (7 detected)**
 `interruption` is 0 (*i.e.*, no period longer than 30 seconds found in logs), and the participant declared they were interrupted. We take the lower bound of the declared interruption time in their answer: 
 ```Smalltalk
 totalTime := duration - interruption
@@ -35,12 +35,12 @@ Examples:
 - `interruption` = 0 and `declaredInterruption` = "1-2 minutes". We count 1 minute of interruption.
 - `interruption` = 0 and `declaredInterruption` = "up to 10 minutes" or "more than 10 minutes". We count 10 minutes of interruption.
 
-This can happen if participant were interrupted for multiple periods shorter than 30 seconds. We therefore consider the answer of the participant as reference. For 10 minutes and more, we can only reasonably consider a total of 10 minutes of interruption. We have no means of knowing exactly the interruption time, and such long interruption is unlikely to happen in batches of less than 30 seconds.
+This can happen if participants were interrupted or their concentration diverted for multiple periods shorter than 30 seconds. We therefore consider the answer of the participant as reference. For 10 minutes and more, we can only reasonably consider a total of 10 minutes of interruption. We have no means of knowing exactly the interruption time, and such long interruption is unlikely to happen in batches of less than 30 seconds.
 
-**Case 3**
-`interruption` is 0 and `declaredInterruption` was not answered in the survey (*e.g.*, it was just not answered by the participant). We count no interruption as none was detected.
+**Case 3 (633 detected)**
+`interruption` is 0 and `declaredInterruption` was `none` in the survey or was not answered (*e.g.*, it was just not answered by the participant). We count no interruption as none was detected.
 
-**Case 4**
+**Case 4 (36 detected)**
 `interruption` and `declaredInterruption` are not consistent:
 * The participant declared no interruption but the system detects interruption times in the logs. 
 * The declared time is not consistent with the effective duration of the task (*e.g.*, the declared interruption time is higher than the task execution time and it would put the task execution time below 0)
@@ -57,7 +57,7 @@ For each case, we justify our decision in a comment that is saved as metadata as
 We decide that a detected interruption is really an interruption only if we have strong evidence that this is really an interruption time.
 For example, if the participant mentionned in their answer that they had a precise interruption, or if the interruption clearly appear in the logs (*e.g.*, a 24 hours gap is clearly an interruption).
 
-**Case 5**
+**Case 5 (145 detected)**
 The detected `interruption` time is lower than the `declaredInterruption`, for example
 
 Examples:
@@ -67,18 +67,35 @@ It is possible participant declared a safe interruption time because they lost t
 In any cases, we cannot decide anything on a declared time that is not detected by the system.
 Therefore we treat these cases as **case 1** occurences, *i.e.*, we deduce the detected `interruption` time.
 
+**Case 6 (7 detected)**
+Implementation numbering error. All cases 6 are cases 2, but may be labelled as `case 6` in the data.
 
 ## Procedure setup
 
-To perform the procedure failing in the aforementioned cases, all tasks of all participations corresponding to one of these cases are presented in a GUI list.
+To perform the procedure failing in the aforementioned cases, all tasks of all participations corresponding to one of these cases are presented in a GUI list:
+
+![](../images/time-fix-main-entry.png)
+
 The data is presented for each of these tasks with only the detected interruption duration, the declared interruption duration and the total amount of retained duration.
 We do not know if the task under observation is a control or a treatment task, nor for which participant.
-For each line in the list, we can open a new GUI that presents the logs where the gap was detected.
+For each line in the list, we can either automatically fix the time if it fails into one of the obvious cases.
+When it does not (*e.g.*, case 4), the `Fix idle times...` action opens a new GUI that presents the logs where the gap was detected.
+
+![](../images/time-fix-each.png)
+
 For tasks failing in **case 4**, we look at these logs to try to understand if the detected time is really an interruption and write down in a comment field the evidence supporting this claim.
 In that case, we might observe logs indicating that we are observing the data of a treatment task (*e.g.*, object-centric breakpoint logs). 
+In the following screenshot, in the first columns we see the two events between which the time gap was detected.
+When we select one of these events, it is automatically selected in the second column in the flow of events of the task, and the third colum shows the details of that event.
+
+![](../images/time-fix-detail.png)
+
 For transparency, we report that information in the comment.
+An example of case 4 time deduction:
 
+![](../images/time-fix-each-2.png)
 
+ 
 ## Threats to validity
 
 It is possible that participants have a biased appreciation of their interruption time (*e.g.*, they have a wrong impression that they were interrupted a lot), or that they declare shorter or larger interruption times for many reasons (*e.g.*, they are not totally sure or they do not remember because the task took all their concentration).
