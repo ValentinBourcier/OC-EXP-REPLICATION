@@ -27,11 +27,11 @@ Otherwise, the participant's answer is incorrect.
 
 In the expected answer a participant:
 1. Explains that the `onColor` and `offColor` of the faulty light are the same.
-2. Explains that `SwitchButtonMorph >> position / getCorner / setCorner` are responsible for the bug.
+2. Explains that `SwitchButtonMorph >> position or getCorner or setCorner` are responsible for the bug.
 3. Explains a fix involving a deletion / comment of the methods of (2).
 
 If the provided answer only satisfies:
-- (1) and (3), or (3) alone, check the methods deleted/comment; if correct, then consider the answer correct.
+- (1) and (3), or (3) alone, check the methods deleted/commented; if correct, then consider the answer correct.
 - (1) and (2), check (2), if correct, then we consider the answer to be correct.
 - (1), check the automatic test, if it is in success, the answer is correct.
 
