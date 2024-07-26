@@ -14,19 +14,17 @@ We collect 3 information to recover the time `totalTime` spent on a task:
   
 To compute the time spent for a participant, we apply the following manual procedure.
 
-**Case 1 (145 detected)**
-`interruption` and `declaredInterruption` are consistent, we consider that the computed interruption time as reference:
+**Case 1 (145 detected)** `interruption` and `declaredInterruption` are consistent, we consider the computed interruption time as reference:
+
 ```Smalltalk
 totalTime := duration - interruption
 ```
-
 Examples:
 - `interruption` = 4 minutes and `declaredInterruption` = "up to 5 minutes". We count 4 minutes of interruption.
 - `interruption` = 3 minutes and `declaredInterruption` = "1-2 minutes". We count 3 minutes of interruption.
 
-
-**Case 2 (7 detected)**
-`interruption` is 0 (*i.e.*, no period longer than 30 seconds found in logs), and the participant declared they were interrupted. We take the lower bound of the declared interruption time in their answer: 
+**Case 2 (7 detected)** `interruption` is 0 (*i.e.*, no period longer than 30 seconds found in logs), and the participant declared they were interrupted.  
+We take the lower bound of the declared interruption time in their answer: 
 ```Smalltalk
 totalTime := duration - interruption
 ```
@@ -35,27 +33,29 @@ Examples:
 - `interruption` = 0 and `declaredInterruption` = "1-2 minutes". We count 1 minute of interruption.
 - `interruption` = 0 and `declaredInterruption` = "up to 10 minutes" or "more than 10 minutes". We count 10 minutes of interruption.
 
-This can happen if participants were interrupted or their concentration diverted for multiple periods shorter than 30 seconds. We therefore consider the answer of the participant as reference. For 10 minutes and more, we can only reasonably consider a total of 10 minutes of interruption. We have no means of knowing exactly the interruption time, and such long interruption is unlikely to happen in batches of less than 30 seconds.
+This can happen if participants were interrupted or their concentration diverted for multiple periods shorter than 30 seconds.  
+We therefore consider the answer of the participant as reference.  
+For 10 minutes and more, we can only reasonably consider a total of 10 minutes of interruption.  
+We have no means of knowing exactly the interruption time, and such long interruption is unlikely to happen in batches of less than 30 seconds.
 
-**Case 3 (633 detected)**
-`interruption` is 0 and `declaredInterruption` was `none` in the survey or was not answered (*e.g.*, it was just not answered by the participant). We count no interruption as none was detected.
+**Case 3 (633 detected)** `interruption` is 0 and `declaredInterruption` was `none` in the survey or was not answered (*e.g.*, it was just not answered by the participant).  
+We count no interruption as none was detected.
 
 **Case 4 (36 detected)**
 `interruption` and `declaredInterruption` are not consistent:
-* The participant declared no interruption but the system detects interruption times in the logs. 
+* The participant declared no interruption, but the system detects interruption times in the logs. 
 * The declared time is not consistent with the effective duration of the task (*e.g.*, the declared interruption time is higher than the task execution time and it would put the task execution time below 0)
 * The participant declared an interruption time, but the system detected a different interruption time and both times are considerably different.
 
 Examples:
 - `interruption` = 2 minutes and `declaredInterruption` = "Not interrupted".
-- The total execution time of the task is measured to 7 minutes but the participant declared more than 10 minutes of interruption, which if deduced would produce a negative task execution time.
-- `interruption` = 2 minutes and `declaredInterruption` = "up to 10 minutes" or "more than 10 minutes".
 - `interruption` = 24 hours and `declaredInterruption` = "up to 10 minutes" or "more than 10 minutes".
+- The total execution time of the task is measured to 7 minutes, but the participant declared more than 10 minutes of interruption, which, if deduced, would produce a negative task execution time.
 
 For each case, we manually look at the logs and determine if the detected interruption can safely be assumed to be an interruption.
 For each case, we justify our decision in a comment that is saved as metadata associated with the participant's data.
 We decide that a detected interruption is really an interruption only if we have strong evidence that this is really an interruption time.
-For example, if the participant mentionned in their answer that they had a precise interruption, or if the interruption clearly appear in the logs (*e.g.*, a 24 hours gap is clearly an interruption).
+For example, if the participant mentioned in their answer that they had a precise interruption, or if the interruption clearly appear in the logs (*e.g.*, a 24 hours gap is clearly an interruption).
 
 **Case 5 (145 detected)**
 The detected `interruption` time is lower than the `declaredInterruption`, for example
@@ -63,16 +63,17 @@ The detected `interruption` time is lower than the `declaredInterruption`, for e
 Examples:
 - `interruption` = 2 minutes and `declaredInterruption` = "Up to 5 minutes".
 - `interruption` = 6 minutes and `declaredInterruption` = "up to 10 minutes" or "more than 10 minutes".
+
 It is possible participant declared a safe interruption time because they lost track of it or because they estimate that time wrongly.
 In any cases, we cannot decide anything on a declared time that is not detected by the system.
-Therefore we treat these cases as **case 1** occurences, *i.e.*, we deduce the detected `interruption` time.
+Therefore, we interpret these cases as **case 1** occurrences, *i.e.*, we deduce the detected `interruption` time.
 
 **Case 6 (7 detected)**
 Implementation numbering error. All cases 6 are cases 2, but may be labelled as `case 6` in the data.
 
 ## Procedure setup
 
-To perform the procedure failing in the aforementioned cases, all tasks of all participations corresponding to one of these cases are presented in a GUI list:
+To perform the procedure failing in the aforementioned cases, all tasks of all participation corresponding to one of these cases are presented in a GUI list:
 
 ![](../images/time-fix-main-entry.png)
 
@@ -98,7 +99,7 @@ An example of case 4 time deduction:
  
 ## Threats to validity
 
-It is possible that participants have a biased appreciation of their interruption time (*e.g.*, they have a wrong impression that they were interrupted a lot), or that they declare shorter or larger interruption times for many reasons (*e.g.*, they are not totally sure or they do not remember because the task took all their concentration).
+It is possible that participants have a biased appreciation of their interruption time (*e.g.*, they have a wrong impression that they were interrupted a lot), or that they declare shorter or larger interruption times for many reasons (*e.g.*, they are not totally sure, or they do not remember because the task took all their concentration).
 
 It is also possible that a detected a time gap was in fact the participant taking notes however.
 If we have a doubt and cannot strongly backup the claim that the detected time gap was an interruption, we do not count that time gap as an interruption.
@@ -107,12 +108,12 @@ If we have a doubt and cannot strongly backup the claim that the detected time g
 
 Case 4: computed and declared interruption are not consistent.
 The participant spends about 38 seconds outside the system windows without doing anything.
-However just after the participant moves their mouse over a text editor and starts navigating. 
+However, just after the participant moves their mouse over a text editor and starts navigating. 
 It is possible that the participant was reading that text editor.
-Decision:  not an  interruption.
+Decision: not an interruption.
 
 Case 4: computed and declared interruption are not consistent.
-The participant moves their mouse oveer items in a list, with an interruption of 35 seconds.
+The participant moves their mouse over items in a list, with an interruption of 35 seconds.
 This case cannot be decided with any strong argument.
 Decision: not an interruption.
 
@@ -122,9 +123,9 @@ Decision: not an interruption.
 
 Case 4: computed and declared interruption are not consistent.
 The participant spends about 3 minutes outside the system windows without doing anything.
-Decision:  interruption.
-
+Decision: interruption.
 
 Each time there is an immediate (by checking time) text editor, a read event, or that such event follows the event gap, we consider that the participant is reading.
 
-In some cases we can't detect the declared time by the participant and we can't make a decision to deduce time while analyzing the detection. In that case we trust the participant and we force the retained idle time as a case 2 ==> redo a complete pass over these cases
+In some cases we can't detect the declared time by the participant, and we can't make a decision to deduce time while analyzing the detection.  
+In that case we trust the participant, and we force the retained idle time as a case 2 ==> redo a complete pass over these cases
