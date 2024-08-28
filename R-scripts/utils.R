@@ -48,6 +48,7 @@ contingency <- function (controls, treatments) {
     tag_column = c(rep('Control', length(controls)), rep('Treatment', length(treatments)))
     value_column = c(controls, treatments)
     table <- table(tag_column, value_column)
+    #Pearson's Chi-squared test with Yates' continuity correction
     chi_squared_result <- chisq.test(table)
     return(chisq.test(table))
 }
