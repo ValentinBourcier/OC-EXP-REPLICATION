@@ -35,6 +35,7 @@ stats_task <- function (task_name, controls, treatments) {
 stats <- function (controls, treatments) {
     test_result <- wilcox.test(controls, treatments, paired = FALSE)
     results <- list(
+            shapiro = list(control = shapiro.test(controls), treatment = shapiro.test(treatments)),
             p_value = test_result$p.value,
             N = list(control = length(controls) , treatment = length(treatments)),
             mean = list(control = mean(controls) , treatment = mean(treatments)),
