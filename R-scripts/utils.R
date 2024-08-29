@@ -115,9 +115,23 @@ post_experiment_surveys_count <- function(data) {
  
 count_choices <- function(col, col_name, choices) {
     table <- table(col)
-    col_values <- c(col_name)
+    total <- 0
     for (choice in choices) {
-        col_values <- c(col_values, table[choice])
+        count <- table[choice]
+        if (is.na(count)) {count <- 0}
+        total <- sum(total, count)
+    }
+
+    col_values <- c(col_name, total)
+    for (choice in choices) {
+        count <- table[choice]
+        if(is.na(count)) {
+           percentage <- 0 
+        }
+        else {
+            percentage <- round(count / total * 100, 3)
+        } 
+        col_values <- c(col_values, percentage)
     }
     return(col_values)
 }
