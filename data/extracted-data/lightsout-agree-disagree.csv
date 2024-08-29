@@ -1,0 +1,15 @@
+"","","NA","Disagree","Nor disagree or agree","Agree","Strongly Agree"
+"1","ct.task.easiness",NA,"13","10","11","1"
+"2","tt.task.easiness","5","11","12","6",NA
+"3","ct.task.length","2","8","15","8","2"
+"4","tt.task.length","1","8","4","19","1"
+"5","ct.debugger.enjoy","1","5","12","5",NA
+"6","tt.debugger.enjoy",NA,"2","7","10","4"
+"7","ct.debugger.efficient",NA,"9","6","4","3"
+"8","tt.debugger.efficient",NA,"1","8","8","4"
+"9","ct.debugger.intuitive",NA,"8","6","7","1"
+"10","tt.debugger.intuitive",NA,"2","8","11","2"
+"11","ct.debugger.easiness","1","5","11","5",NA
+"12","tt.debugger.easiness",NA,NA,"7","9","4"
+"13","ct.debugger.learn",NA,"4","13","5","1"
+"14","tt.debugger.learn",NA,"2","4","11","6"
