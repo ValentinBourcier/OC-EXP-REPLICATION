@@ -1,3 +1,15 @@
+# Columns accesses
+agree_disagree_col_names <- c("task.easiness", "task.length", "debugger.enjoy", "debugger.efficient", "debugger.intuitive", "debugger.easiness", "debugger.learn")
+yes_no_col_names = c("bug.found")
+help_col_names = c("debugger.help")
+post_experiment_agree_disagree_col_names = colnames(experiment_feedback)
+
+# Likert labels
+agree_disagree_labels <- c("Strongly Disagree", "Disagree","Nor disagree or agree", "Agree", "Strongly Agree")
+yes_no_labels <- c("Yes", "No")
+help_labels <- c("Not at all", "Slightly", "Moderately", "Normally", "Extremely")
+
+
 # Vovk-Sellke maximum p-ratio (https://shiny.psy.lmu.de/felix/vs-mpr/)
 # https://www.stat.purdue.edu/research/technical-reports/docs/tr17-01.pdf
 vs_mpr <- function (pvalue) {
@@ -31,7 +43,6 @@ stats_task <- function (task_name, controls, treatments) {
     return(results)
 }
 
-
 stats <- function (controls, treatments) {
     test_result <- wilcox.test(controls, treatments, paired = FALSE)
     results <- list(
@@ -53,4 +64,66 @@ contingency <- function (controls, treatments) {
     chi_squared_result <- chisq.test(table)
     return(chisq.test(table))
 }
+
+post_task_surveys_count <- function(task_name, control, treatment) {
+    agree_disagree_count <- c()
+    for (name in agree_disagree_col_names) {
+        ct_col_name <- paste("ct", name, sep=".")
+        tt_col_name <- paste("tt", name, sep=".") 
+        agree_disagree_count <- 
+            rbind(agree_disagree_count, count_choices(control[[ct_col_name]], ct_col_name, agree_disagree_labels))
+        agree_disagree_count <- 
+            rbind(agree_disagree_count, count_choices(treatment[[tt_col_name]], tt_col_name, agree_disagree_labels))
+    }
+
+    yes_no_count <- c()
+    for (name in yes_no_col_names) {
+        ct_col_name <- paste("ct", name, sep=".")
+        tt_col_name <- paste("tt", name, sep=".")
+        yes_no_count <- 
+            rbind(yes_no_count, count_choices(control[[ct_col_name]], ct_col_name, yes_no_labels))
+        yes_no_count <- 
+            rbind(yes_no_count, count_choices(treatment[[tt_col_name]], tt_col_name, yes_no_labels))
+    }   
+
+    help_count <- c("Choices", help_col_names)
+    help_count <- c()
+    for (name in help_col_names) {
+        ct_col_name <- paste("ct", name, sep=".")
+        tt_col_name <- paste("tt", name, sep=".")
+        help_count <- 
+            rbind(help_count, count_choices(control[[ct_col_name]], ct_col_name, help_labels))
+        help_count <- 
+            rbind(help_count, count_choices(treatment[[tt_col_name]], tt_col_name, help_labels))
+    }
+
+    return(list(
+        name=task_name,
+        agree_disagree_results=agree_disagree_count,
+        yes_no_results=yes_no_count,
+        help_results=help_count))
+}
+
+post_experiment_surveys_count <- function(data) {
+    agree_disagree_count <- c()
+    
+    for (name in post_experiment_agree_disagree_col_names) {
+        col <- data[[name]]
+        print(col)
+        agree_disagree_count <- rbind(agree_disagree_count, count_choices(col, name, agree_disagree_labels))  
+    }
+    return(agree_disagree_count)
+}
  
+count_choices <- function(col, col_name, choices) {
+    table <- table(col)
+    col_values <- c(col_name)
+    for (choice in choices) {
+        col_values <- c(col_values, table[choice])
+    }
+    return(col_values)
+}
+
+
+
+

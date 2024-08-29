@@ -12,7 +12,6 @@ experiment_feedback <- raw_data[, 36:51]
 demographic_data <- raw_data[, 52:59]
 
 valid_controls <- controls[controls$control.task.validity == "true",]
-
 ammolite_controls <- valid_controls[valid_controls$control.task.name == "Ammolite", ] 
 lightsout_controls <- valid_controls[valid_controls$control.task.name == "Lights Out", ]
 
@@ -23,37 +22,20 @@ lightsout_treatments <- valid_treatments[valid_treatments$treatment.task.name ==
 ammolite_stats <- stats_task("Ammolite", ammolite_controls, ammolite_treatments)
 lightsout_stats <- stats_task("Lights Out", lightsout_controls, lightsout_treatments)
 
-col <- ammolite_treatments$tt.task.easiness
-table <- as.data.frame(table(col))
-print(table)
+ammolite_post_task_survey_results <- 
+    post_task_surveys_count("Ammolite", ammolite_controls, ammolite_treatments)
+lightsout_post_task_survey_results <- 
+    post_task_surveys_count("Lights Out", lightsout_controls, lightsout_treatments)
 
-h <- hist(table$Freq, plot = FALSE)
+post_experiment_survey_results <- post_experiment_surveys_count(experiment_feedback)
 
-plot(h, xaxt = "n", xlab = "Easiness", ylab = "Counts", main = "", col=rgb(1,0,0,0.5))
-axis(1, table$col, labels = table$col, tick = FALSE)
+write.csv(ammolite_post_task_survey_results$agree_disagree_results, "./data/extracted-data/ammolite-agree-disagree.csv")
+write.csv(lightsout_post_task_survey_results$agree_disagree_results, "./data/extracted-data/lightsout-agree-disagree.csv")
 
-d <- aggregate(table$Freq, by=list(table$col), FUN=sum)
-#d <- d[order(d$x, decreasing = T),]
-t <- d$x
-names(t) <- d$spray
+write.csv(ammolite_post_task_survey_results$yes_no_results, "./data/extracted-data/ammolite-yes-no.csv")
+write.csv(lightsout_post_task_survey_results$yes_no_results, "./data/extracted-data/lightsout-yes-no.csv")
 
-barplot(t, las = 1, space = 0, col = "pink", xlab = "Easiness", ylab = "Count")
+write.csv(ammolite_post_task_survey_results$help_results, "./data/extracted-data/ammolite-help.csv")
+write.csv(lightsout_post_task_survey_results$help_results, "./data/extracted-data/lightsout-help.csv")
 
-#Create data
-#set.seed(1)
-#Ixos=rnorm(4000 , 120 , 30)     
-#Primadur=rnorm(4000 , 200 , 30) 
- 
-# First distribution
-#hist(Ixos, breaks=30, xlim=c(0,300), col=rgb(1,0,0,0.5), xlab="height", 
-     #ylab="nbr of plants", main="distribution of height of 2 durum wheat varieties" )
-
-# Second with add=T to plot on top
-#hist(Primadur, breaks=30, xlim=c(0,300), col=rgb(0,0,1,0.5), add=T)
-
-# Add legend
-#legend("topright", legend=c("Ixos","Primadur"), col=c(rgb(1,0,0,0.5), 
-     #rgb(0,0,1,0.5)), pt.cex=2, pch=15 )
-
-
-#print(sessionInfo())
+write.csv(post_experiment_survey_results, "./data/extracted-data/experiment-feedback.csv")
