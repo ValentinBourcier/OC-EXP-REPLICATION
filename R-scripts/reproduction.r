@@ -39,3 +39,5 @@ write.csv(ammolite_post_task_survey_results$help_results, "./data/extracted-data
 write.csv(lightsout_post_task_survey_results$help_results, "./data/extracted-data/lightsout-help.csv")
 
 write.csv(post_experiment_survey_results, "./data/extracted-data/experiment-feedback.csv")
+
+write_demographics(demographic_data)

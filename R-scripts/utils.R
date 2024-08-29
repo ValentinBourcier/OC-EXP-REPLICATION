@@ -106,10 +106,8 @@ post_task_surveys_count <- function(task_name, control, treatment) {
 
 post_experiment_surveys_count <- function(data) {
     agree_disagree_count <- c()
-    
     for (name in post_experiment_agree_disagree_col_names) {
         col <- data[[name]]
-        print(col)
         agree_disagree_count <- rbind(agree_disagree_count, count_choices(col, name, agree_disagree_labels))  
     }
     return(agree_disagree_count)
@@ -124,6 +122,22 @@ count_choices <- function(col, col_name, choices) {
     return(col_values)
 }
 
+write_demographics <- function(data){
+    for (name in colnames(data[,1:6])) {
+        filename <- paste(paste("./data/extracted-data/", name), ".csv")
+        table <- table(data[[name]])
+        write.csv(table,filename)
+    }
+
+    agree_disagree_count <- c()
+    for (name in colnames(data[,7:8])) {
+        col <- data[[name]]
+        agree_disagree_count <- rbind(agree_disagree_count, count_choices(col, name, agree_disagree_labels))  
+    }
+    write.csv(agree_disagree_count,"./data/extracted-data/familiarity.csv")
+
+
+}
 
 
 
