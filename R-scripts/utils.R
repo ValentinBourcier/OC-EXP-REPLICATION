@@ -138,7 +138,7 @@ count_choices <- function(col, col_name, choices) {
 
 write_demographics <- function(data){
     for (name in colnames(data[,1:6])) {
-        filename <- paste(paste("./data/extracted-data/", name), ".csv")
+        filename <- paste(paste("./data/extracted-data/", name, sep=''), ".csv",  sep='')
         table <- table(data[[name]])
         write.csv(table,filename)
     }
