@@ -1,7 +1,11 @@
-setwd(".")
-#install.packages("ggplot2")
-#install.packages("sm")
+options(repos = list(CRAN="http://cran.rstudio.com"))
+
+install.packages("effectsize")
+install.packages("ggplot2")
+
 library(effectsize)
+
+setwd(".")
 
 raw_data <- read.csv("data/data.csv")
 columns <- names(raw_data)
