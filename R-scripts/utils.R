@@ -189,7 +189,7 @@ write_demographics <- function(data, filepath){
         col <- data[[name]]
         agree_disagree_count <- rbind(agree_disagree_count, count_choices_freq(col, name, agree_disagree_labels))  
     }
-    write.csv(agree_disagree_count,"./data/extracted-data/familiarity.csv")
+    write.csv(agree_disagree_count,"./data/extracted-data/demographics/familiarity.csv")
 
 }
 
@@ -226,9 +226,9 @@ per_task_demographics_count <- function(data) {
     #print(wilcox.test(pxp_ctrl, pxp_tt, alternative="two.sided"))
 
     total_jobs <- count_choices(data$job.position, "Total Jobs", jobs)
-    write.csv(total_jobs, "./data/extracted-data/total-jobs.csv")
+    write.csv(total_jobs, "./data/extracted-data/demographics/total-jobs.csv")
     total_xp <- count_choices(data$program.exp, "Total XP", programming_xp)
-    write.csv(total_xp, "./data/extracted-data/total-xp.csv")
+    write.csv(total_xp, "./data/extracted-data/demographics/total-xp.csv")
 }
 
 task_demographics_count <- function(task_name, ct_data, tt_data) {
@@ -262,7 +262,7 @@ task_demographics_count <- function(task_name, ct_data, tt_data) {
         cbind(count_choices(ct_demographics[,6], "Control", code_freq), 
               count_choices(tt_demographics[,6], "Treatment", code_freq))
 
-    data_path <- paste("./data/extracted-data/", task_name, sep="")
+    data_path <- paste("./data/extracted-data/demographics/", task_name, sep="")
     write.csv(education, paste(data_path, "education.csv", sep="-"))
     write.csv(prog_xp, paste(data_path, "prog.csv", sep="-"))
     write.csv(pharo_xp, paste(data_path, "pharo.csv", sep="-"))
@@ -293,7 +293,7 @@ export_control_distributions <- function(control_ammolite_time, control_lightsou
             scale_fill_manual(values=c("#39c5a3","#999999")) +
             theme(legend.title=element_blank()) 
         print(p)
-       ggsave("./data/extracted-data/control-times-distribution.pdf", device=pdf)
+       ggsave("./data/extracted-data/controls/control-times-distribution.pdf", device=pdf)
        
    
    # Plotting control actions distribution
@@ -313,7 +313,7 @@ export_control_distributions <- function(control_ammolite_time, control_lightsou
             scale_fill_manual(values=c("#39c5a3","#999999")) +
             theme(legend.title=element_blank())
       print(p)
-       ggsave("./data/extracted-data/control-actions-distribution.pdf", device=pdf)
+       ggsave("./data/extracted-data/controls/control-actions-distribution.pdf", device=pdf)
 
 }
 
