@@ -1,0 +1,68 @@
+<list>
+├─name: "Ammolite"
+├─time: <list>
+│ ├─shapiro: <list>
+│ │ ├─control: S3<htest>
+│ │ │ ├─statistic: 0.697208668956885
+│ │ │ ├─p.value: 5.22664991489023e-08
+│ │ │ ├─method: "Shapiro-Wilk normality test"
+│ │ │ └─data.name: "controls"
+│ │ └─treatment: S3<htest>
+│ │   ├─statistic: 0.914234834299977
+│ │   ├─p.value: 0.0111411216340242
+│ │   ├─method: "Shapiro-Wilk normality test"
+│ │   └─data.name: "treatments"
+│ ├─p_value: 0.0140883500450513
+│ ├─N: <list>
+│ │ ├─control: 42
+│ │ └─treatment: 34
+│ ├─mean: <list>
+│ │ ├─control: 34.2297619047619
+│ │ └─treatment: 20.0063725490196
+│ ├─CV: <list>
+│ │ ├─control: 0.883031431284965
+│ │ └─treatment: 0.456356489443789
+│ ├─vs_mpr: 6.12618999553505
+│ └─rrb: S3<effectsize_difference/effectsize_table/see_effectsize_table/data.frame>
+│   ├─r_rank_biserial: 0.329831932773109
+│   ├─CI: 0.95
+│   ├─CI_low: 0.0797045016803229
+│   └─CI_high: 0.540884750825211
+├─actions: <list>
+│ ├─shapiro: <list>
+│ │ ├─control: S3<htest>
+│ │ │ ├─statistic: 0.74584474169481
+│ │ │ ├─p.value: 3.72796418663539e-07
+│ │ │ ├─method: "Shapiro-Wilk normality test"
+│ │ │ └─data.name: "controls"
+│ │ └─treatment: S3<htest>
+│ │   ├─statistic: 0.823429264113268
+│ │   ├─p.value: 7.52605029570185e-05
+│ │   ├─method: "Shapiro-Wilk normality test"
+│ │   └─data.name: "treatments"
+│ ├─p_value: 0.129760282662335
+│ ├─N: <list>
+│ │ ├─control: 42
+│ │ └─treatment: 34
+│ ├─mean: <list>
+│ │ ├─control: 149.238095238095
+│ │ └─treatment: 73.2941176470588
+│ ├─CV: <list>
+│ │ ├─control: 1.21145590278143
+│ │ └─treatment: 0.955974348971264
+│ ├─vs_mpr: 1.38833365676828
+│ └─rrb: S3<effectsize_difference/effectsize_table/see_effectsize_table/data.frame>
+│   ├─r_rank_biserial: 0.203781512605042
+│   ├─CI: 0.95
+│   ├─CI_low: -0.0560322229615529
+│   └─CI_high: 0.437747126388039
+└─correctness: S3<htest>
+  ├─statistic: 1.49175088721022e-30
+  ├─parameter: 1
+  ├─p.value: 0.999999999999999
+  ├─method: "Pearson's Chi-squared test with..."
+  ├─data.name: "table"
+  ├─observed<int [4]>: 2, 2, 40, 32
+  ├─expected<dbl [4]>: 2.21052631578947, 1.78947368421053, 39.7894736842105, 32.2105263157895
+  ├─residuals<dbl [4]>: -0.141598465080958, 0.157377895072927, 0.0333750782881171, -0.037094325604977
+  └─stdres<dbl [4]>: -0.217503590806438, 0.217503590806438, 0.217503590806437, -0.217503590806437

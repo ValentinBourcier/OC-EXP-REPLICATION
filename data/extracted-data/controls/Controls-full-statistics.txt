@@ -1,0 +1,27 @@
+<list>
+├─time: S3<htest>
+│ ├─statistic: 803.5
+│ ├─parameter: <NULL>
+│ ├─p.value: 0.961578096546206
+│ ├─null.value: 0
+│ ├─alternative: "two.sided"
+│ ├─method: "Wilcoxon rank sum test with cont..."
+│ └─data.name: "time_control_ammolite and time_c..."
+├─time.effect.size: S3<effectsize_difference/effectsize_table/see_effectsize_table/data.frame>
+│ ├─r_rank_biserial: 0.00689223057644112
+│ ├─CI: 0.95
+│ ├─CI_low: -0.243069053172906
+│ └─CI_high: 0.255995169049253
+├─actions: S3<htest>
+│ ├─statistic: 787
+│ ├─parameter: <NULL>
+│ ├─p.value: 0.919412730588585
+│ ├─null.value: 0
+│ ├─alternative: "two.sided"
+│ ├─method: "Wilcoxon rank sum test with cont..."
+│ └─data.name: "actions_control_ammolite and act..."
+└─actions.effect.size: S3<effectsize_difference/effectsize_table/see_effectsize_table/data.frame>
+  ├─r_rank_biserial: -0.0137844611528822
+  ├─CI: 0.95
+  ├─CI_low: -0.262424993680535
+  └─CI_high: 0.236572532505554

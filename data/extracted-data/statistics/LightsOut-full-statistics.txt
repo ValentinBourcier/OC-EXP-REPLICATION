@@ -1,0 +1,68 @@
+<list>
+├─name: "Lights Out"
+├─time: <list>
+│ ├─shapiro: <list>
+│ │ ├─control: S3<htest>
+│ │ │ ├─statistic: 0.740633662100405
+│ │ │ ├─p.value: 7.92284099007527e-07
+│ │ │ ├─method: "Shapiro-Wilk normality test"
+│ │ │ └─data.name: "controls"
+│ │ └─treatment: S3<htest>
+│ │   ├─statistic: 0.947758502118631
+│ │   ├─p.value: 0.10518701285673
+│ │   ├─method: "Shapiro-Wilk normality test"
+│ │   └─data.name: "treatments"
+│ ├─p_value: 0.0316500956771592
+│ ├─N: <list>
+│ │ ├─control: 38
+│ │ └─treatment: 34
+│ ├─mean: <list>
+│ │ ├─control: 29.3451754385965
+│ │ └─treatment: 38.0083333333333
+│ ├─CV: <list>
+│ │ ├─control: 0.6312545767037
+│ │ └─treatment: 0.522600508559749
+│ ├─vs_mpr: 3.36613971781233
+│ └─rrb: S3<effectsize_difference/effectsize_table/see_effectsize_table/data.frame>
+│   ├─r_rank_biserial: -0.295665634674923
+│   ├─CI: 0.95
+│   ├─CI_low: -0.518102022571907
+│   └─CI_high: -0.0357695157744186
+├─actions: <list>
+│ ├─shapiro: <list>
+│ │ ├─control: S3<htest>
+│ │ │ ├─statistic: 0.764187607043705
+│ │ │ ├─p.value: 2.10707079494674e-06
+│ │ │ ├─method: "Shapiro-Wilk normality test"
+│ │ │ └─data.name: "controls"
+│ │ └─treatment: S3<htest>
+│ │   ├─statistic: 0.551780625961725
+│ │   ├─p.value: 4.98203488469774e-09
+│ │   ├─method: "Shapiro-Wilk normality test"
+│ │   └─data.name: "treatments"
+│ ├─p_value: 0.208457175566828
+│ ├─N: <list>
+│ │ ├─control: 38
+│ │ └─treatment: 34
+│ ├─mean: <list>
+│ │ ├─control: 157.447368421053
+│ │ └─treatment: 220.911764705882
+│ ├─CV: <list>
+│ │ ├─control: 1.17052440079289
+│ │ └─treatment: 1.48332195093407
+│ ├─vs_mpr: 1.12547697257092
+│ └─rrb: S3<effectsize_difference/effectsize_table/see_effectsize_table/data.frame>
+│   ├─r_rank_biserial: -0.173374613003096
+│   ├─CI: 0.95
+│   ├─CI_low: -0.417055587237275
+│   └─CI_high: 0.0935603323318037
+└─correctness: S3<htest>
+  ├─statistic: 1.21904024767802
+  ├─parameter: 1
+  ├─p.value: 0.26954908604843
+  ├─method: "Pearson's Chi-squared test with..."
+  ├─data.name: "table"
+  ├─observed<int [4]>: 6, 10, 32, 24
+  ├─expected<dbl [4]>: 8.44444444444444, 7.55555555555556, 29.5555555555556, 26.4444444444444
+  ├─residuals<dbl [4]>: -0.84119102419206, 0.889297291799888, 0.449635515622308, -0.475349397271587
+  └─stdres<dbl [4]>: -1.38801338566287, 1.38801338566287, 1.38801338566287, -1.38801338566287
