@@ -283,16 +283,18 @@ export_control_distributions <- function(control_ammolite_time, control_lightsou
     p<-ggplot(df) +  geom_density(aes(x=Time, fill=Task),  alpha=0.4) + 
             scale_x_continuous(trans='log2') + 
             theme_bw() +
-            theme(legend.key.size = unit(3, 'cm')) +
+            theme(legend.key.size = unit(2, 'cm')) +
             theme(legend.title = element_text(size=40)) +
             theme(legend.text = element_text(size=40)) +
             theme(legend.position="top") +
             theme(axis.text=element_text(size=40)) +
             theme(axis.title.x=element_text(size=40)) +
             theme(axis.title.y=element_blank()) +
-            scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
+            scale_fill_manual(values=c("#39c5a3","#999999")) +
             theme(legend.title=element_blank()) 
+        print(p)
        ggsave("./data/extracted-data/control-times-distribution.pdf", device=pdf)
+       
    
    # Plotting control actions distribution
     data <- rbind(cbind(Condition='Ammolite', control_ammolite_actions), cbind(Condition='LightsOut', control_lightsout_actions))
@@ -301,15 +303,16 @@ export_control_distributions <- function(control_ammolite_time, control_lightsou
     p<-ggplot(df) +  geom_density(aes(x=Actions, fill=Task),  alpha=0.4) + 
             scale_x_continuous(trans='log2') + 
             theme_bw() +
-            theme(legend.key.size = unit(3, 'cm')) +
+            theme(legend.key.size = unit(2, 'cm')) +
             theme(legend.title = element_text(size=40)) +
             theme(legend.text = element_text(size=40)) +
             theme(legend.position="top") +
             theme(axis.text=element_text(size=40)) +
             theme(axis.title.x=element_text(size=40)) +
             theme(axis.title.y=element_blank()) +
-            scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
+            scale_fill_manual(values=c("#39c5a3","#999999")) +
             theme(legend.title=element_blank())
+      print(p)
        ggsave("./data/extracted-data/control-actions-distribution.pdf", device=pdf)
 
 }
