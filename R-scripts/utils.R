@@ -26,6 +26,26 @@ cv <- function(column) {
     return (sd(column) / mean(column))
 }
 
+
+stats_task_control <- function (control_ammolite, control_lightsout) {
+
+    time_control_ammolite <- control_ammolite$control.task.time.in.seconds/60
+    time_control_lightsout <- control_lightsout$control.task.time.in.seconds/60
+    stats_time <- wilcox.test(time_control_ammolite, time_control_lightsout)
+
+    actions_control_ammolite <- control_ammolite$control.task.actions
+    actions_treatment_lightsout <- control_lightsout$control.task.actions
+    stats_actions <- wilcox.test(actions_control_ammolite, actions_treatment_lightsout)
+  
+    results <- list(
+            time = stats_time,
+            time.effect.size = rank_biserial(time_control_ammolite, time_control_lightsout, paired = FALSE),
+            actions = stats_actions,
+            actions.effect.size = rank_biserial(actions_control_ammolite, actions_treatment_lightsout, paired = FALSE))
+
+    return(results)
+}
+
 stats_task <- function (task_name, controls, treatments) {
 
     time_control_col <- controls$control.task.time.in.seconds/60
@@ -252,30 +272,45 @@ task_demographics_count <- function(task_name, ct_data, tt_data) {
 
 }
 
-export_control_distributions <- function(name, control_ammolite, control_lightsout) {
-
-    data <- rbind(cbind(Condition='Ammolite', control_ammolite), cbind(Condition='LightsOut', control_lightsout))
-    #Òcolnames(data) <- c("Condition", name)
-    df<- data.frame(cond=data[,1], time=data[,2])
-    print(df)
+export_control_distributions <- function(control_ammolite_time, control_lightsout_time, control_ammolite_actions, control_lightsout_actions) {
+    
     library(ggplot2)
-    #print(ggplot(df, aes(x=time, fill=cond)) + geom_density(alpha=.3))
-
-    # Data
-set.seed(5)
-x <- df$time
-group <- df$cond
-
-print(group)
-
-cols <- c("#F76D5E", "#FFFFBF", "#72D8FF")
-
-# Basic density plot in ggplot2
-print(ggplot(df, aes(x = df$time, fill = df$cond)) +
-  geom_density(alpha = 0.5) + 
-  scale_fill_manual(values = cols) )
- 
-
+    
+    # Plotting control time distribution
+    data <- rbind(cbind(Condition='Ammolite', control_ammolite_time), cbind(Condition='LightsOut', control_lightsout_time))
+    df<- data.frame(Task=data[,1], Time=as.numeric(data[,2]))   
+   
+    p<-ggplot(df) +  geom_density(aes(x=Time, fill=Task),  alpha=0.4) + 
+            scale_x_continuous(trans='log2') + 
+            theme_bw() +
+            theme(legend.key.size = unit(3, 'cm')) +
+            theme(legend.title = element_text(size=40)) +
+            theme(legend.text = element_text(size=40)) +
+            theme(legend.position="top") +
+            theme(axis.text=element_text(size=40)) +
+            theme(axis.title.x=element_text(size=40)) +
+            theme(axis.title.y=element_blank()) +
+            scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
+            theme(legend.title=element_blank()) 
+       ggsave("./data/extracted-data/control-times-distribution.pdf", device=pdf)
+   
+   # Plotting control actions distribution
+    data <- rbind(cbind(Condition='Ammolite', control_ammolite_actions), cbind(Condition='LightsOut', control_lightsout_actions))
+    df<- data.frame(Task=data[,1], Actions=as.numeric(data[,2]))   
+   
+    p<-ggplot(df) +  geom_density(aes(x=Actions, fill=Task),  alpha=0.4) + 
+            scale_x_continuous(trans='log2') + 
+            theme_bw() +
+            theme(legend.key.size = unit(3, 'cm')) +
+            theme(legend.title = element_text(size=40)) +
+            theme(legend.text = element_text(size=40)) +
+            theme(legend.position="top") +
+            theme(axis.text=element_text(size=40)) +
+            theme(axis.title.x=element_text(size=40)) +
+            theme(axis.title.y=element_blank()) +
+            scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
+            theme(legend.title=element_blank())
+       ggsave("./data/extracted-data/control-actions-distribution.pdf", device=pdf)
 
 }
 

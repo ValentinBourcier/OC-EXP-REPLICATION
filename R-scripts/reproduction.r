@@ -1,9 +1,12 @@
 options(repos = list(CRAN="http://cran.rstudio.com"))
 
-install.packages("effectsize")
-install.packages("ggplot2")
+#install.packages("effectsize")
+#install.packages("ggplot2")
+#install.packages("lobstr")
 
 library(effectsize)
+library(Hmisc)
+library(lobstr)
 
 setwd(".")
 
@@ -26,6 +29,8 @@ lightsout_treatments <- valid_treatments[valid_treatments$treatment.task.name ==
 
 ammolite_stats <- stats_task("Ammolite", ammolite_controls, ammolite_treatments)
 lightsout_stats <- stats_task("Lights Out", lightsout_controls, lightsout_treatments)
+capture.output(tree(ammolite_stats), file = "./data/extracted-data/Ammolite-full-statistics.txt")
+capture.output(tree(lightsout_stats), file = "./data/extracted-data/LightsOut-full-statistics.txt")
 
 ammolite_post_task_survey_results <- 
     post_task_surveys_count("Ammolite", ammolite_controls, ammolite_treatments)
@@ -56,5 +61,14 @@ write.csv(post_experiment_survey_results,
 
 write_demographics(demographic_data, "./data/extracted-data/")
 
- export_control_distributions("time.distribution", ammolite_controls$control.task.time.in.seconds/60, lightsout_controls$control.task.time.in.seconds/60)
 
+
+# Control comparison
+controls_stats <- stats_task_control(ammolite_controls, lightsout_controls)
+capture.output(tree(controls_stats), file = "./data/extracted-data/Controls-full-statistics.txt")
+
+ export_control_distributions(
+    ammolite_controls$control.task.time.in.seconds/60, 
+    lightsout_controls$control.task.time.in.seconds/60,
+    ammolite_controls$control.task.actions,
+    lightsout_controls$control.task.actions)
