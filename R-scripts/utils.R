@@ -317,5 +317,3 @@ export_control_distributions <- function(control_ammolite_time, control_lightsou
 
 }
 
-
-

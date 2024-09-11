@@ -25,7 +25,7 @@ Unfortunately, there is a bug. As shown in the screenshot below, one light bulb 
 
 Each time the game is launched, the bug appears in a new corner.
 
-## Your task
+## Your task
 
 * Understand why there is a light that cannot be switched on.
 * Fix the bug. Identify and delete the method responsible for this behavior.

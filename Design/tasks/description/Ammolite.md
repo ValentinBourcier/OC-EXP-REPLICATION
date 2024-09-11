@@ -30,7 +30,7 @@ There is three student named Adèle with a "+" marker. However, for one of them,
 
 Only the last Adèle in the list of students produces such behavior.
 
-## Your task
+## Your task
 
 1. Understand why the level marker of this student is not printed in group lists.
 2. Fix the bug. Identify the method reponsible for this behavior and fix the correct instruction.
