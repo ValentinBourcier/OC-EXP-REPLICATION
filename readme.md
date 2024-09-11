@@ -11,7 +11,14 @@ under the design directory are elements of the experiment definition and procedu
 
 ## tasks
 
-These files describe the 
+### description
+
+Describes the tasks.
+These descriptions are the same as the ones given to participants.
+
+### solution
+
+Contains the detailed and illustrated description of how to solve the bugs with the object-centric breakpoints.
 
 ## surveys
 
