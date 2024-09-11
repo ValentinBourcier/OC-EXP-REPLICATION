@@ -28,3 +28,4 @@ Contains the detailed and illustrated description of how to solve the bugs with 
 # data
 
 # R-scripts
+we need to state the required packages, say that we left them commented in the scripts and if not installed to uncomment or to run the commands.
