@@ -93,8 +93,7 @@ The directory is structured as follows:
     │   ├── total-jobs.csv
     │   └── total-xp.csv
     ├── experiment-feedback
-    │   └── experiment-feedback.csv - Contains the answers given by participants to the post-experiment questions.
-    The results are presented by number/frequency of apparition of the different possible answers.
+    │   └── experiment-feedback.csv - Contains the answers given by participants to the post-experiment questions. The results are presented by number/frequency of apparition of the different possible answers.
     ├── post-task-feedback - Contains the answers given by participants to the post-task questionnaires. The results are presented by number/frequency of apparition of the different possible answers, after the control task and the treatment task.
     │   ├── ammolite-agree-disagree.csv
     │   ├── ammolite-help.csv
