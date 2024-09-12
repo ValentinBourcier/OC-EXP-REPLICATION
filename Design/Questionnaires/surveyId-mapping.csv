@@ -1,0 +1,36 @@
+Question id,Question,Short_Question
+1,"""The Task was easy."" How much do you agree?",task-easiness
+2,"""The Task was long."" How much do you agree?",task-length
+3,How long have you been interrupted?,task-interruption
+4,Did you find the bug?,bug-found
+5,"If you found the bug, please describe it.",bug-description
+6,"If you found the bug, how much the debugger helped discover the bug?",debugger-help
+7,"If you found the bug, how much do you agree with: ""The debugging method is enjoyable""",debugger-enjoy
+8,"If you found the bug, how much do you agree with: ""The debugging method is efficient""",debugger-efficient
+9,"If you found the bug, how much do you agree with: ""The debugging method is intuitive""",debugger-intuitive
+10,"If you found the bug, how much do you agree with: ""The debugging method is easy to use""",debugger-easiness
+11,"If you found the bug, how much do you agree with: ""The debugging method is asy to learn""",debugger-learn
+12,What is your highest achieved level of education?,education
+13,What is you current job position?,job-position
+14,How many years of programming experience do you have?,program-exp
+15,How many years of programming experience do you have with Pharo?,pharo-exp
+16,How often do you write code?,code-frequency
+17,How often do you write code in Pharo?,pharo-frequency
+18,"How much do you agree with the sentence: ""I'm familiar with debugging""",debugger-familiarity
+19,"How much do you agree with the sentence: ""I'm familiar with Object-Centric Debugging""",debugger-ocd-familarity
+20,"""The Experiment was easy."" How much do you agree?",experiment-easiness
+21,"""The Experiment was long."" How much do you agree?",experiment-length
+22,"How much do you agree with: ""OCDbg would enable me to accomplish debugging tasks more quickly""",ocd-help
+23,"How much do you agree with: ""OCDbg would improve my debugging performance""",ocd-performance
+24,"How much do you agree with: ""OCDbg would increase my productivity""",ocd-productivity
+25,"How much do you agree with: ""OCDbg would increase my debugging effectiveness""",ocd-effectiveness
+26,"How much do you agree with: ""OCDbg would make it easier to debug the code""",ocd-easiness
+27,"How much do you agree with: ""I would find OCDbg useful""",ocd-usefulness
+28,"How much do you agree with: ""Learning to operate with OCDbg would be easy for me""",learn-ocd
+29,"How much do you agree with: ""I would find it easy to get OCDbg to do what I want it to do, to track objects manipulations and locate the bug""",ocd-tasks-help
+30,"How much do you agree with: ""My interaction with OCDbg would be clear and understandable""",ocd-interaction
+31,"How much do you agree with: ""It would be easy for me to become skillful at using OCDbg""",ocd-skills
+32,"How much do you agree with: ""It is easy to remember how to debug a code using OCDbg""",ocd-debugging
+33,"How much do you agree with: ""I would find OCDbg easy to use""",ocd-use
+34,"How much do you agree with: ""Assuming OCDbg would be available, I predict that I will use it in the future""",ocd-future
+35,"How much do you agree with: "" I would prefer OCDbg to the classic debugging system""",ocd-over-classical
