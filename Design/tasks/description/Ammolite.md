@@ -8,7 +8,7 @@ Ammolite Magenta is a graphical application that can be launched via `AmmoliteMa
 
 You should see the following application:
 
-![Ammolite](https://raw.githubusercontent.com/Pharo-XP-Tools/xp-free-resources/main/ocd/ammolite.png)
+![Ammolite](./Assets/Ammolite/ammolite.png)
 
 Its purpose is to create from a class/promotion, well balanced groups of students depending on their levels.
 
@@ -20,13 +20,13 @@ To represent the level, each student has a marker depending on how they perform 
 To create groups, the user has to select a class/promotion and click onto the "generate" button.
 The app the shows the result:
 
-![Ammolite groups](https://raw.githubusercontent.com/Pharo-XP-Tools/xp-free-resources/main/ocd/ammolite-groups.png)
+![Ammolite groups](./Assets/Ammolite/ammolite-groups.png)
 
 ## The Problem
 
 There is three student named Adèle with a "+" marker. However, for one of them, the marker is not printed in group lists.
 
-![Ammolite groups bug](https://raw.githubusercontent.com/Pharo-XP-Tools/xp-free-resources/main/ocd/ammolite-groups-bug.png)
+![Ammolite groups bug](./Assets/Ammolite/ammolite-groups-bug.png)
 
 Only the last Adèle in the list of students produces such behavior.
 

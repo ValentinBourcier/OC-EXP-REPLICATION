@@ -4,7 +4,7 @@ This tutorial contains 2 guided exercises.
 Estimated time: 10 minutes.
 Difficulty: easy.
 
-A 3 minutes introduction video is available here: [https://kloum.io/costiou/ocb-ins.mov](https://kloum.io/costiou/ocb-ins.mov)
+A 3 minutes introduction video is available here: [Introduction video](./Assets/Tutorial/ocb-ins.mov)  
 First, watch the video then start the tutorial.
 
 ## Context: the OCDBox objects loop
@@ -30,7 +30,7 @@ The typical scenario for `haltOnCall` is when you have many instances of the sam
 
 ### Exercise 1
 
-If you have trouble performing this exercise, you can find it realized in a 3 minutes video there: [https://kloum.io/costiou/hac-vid.mov](https://kloum.io/costiou/hac-vid.mov)
+If you have trouble performing this exercise, you can find it realized in a 3 minutes video there: [Halt on call video](./Assets/Tutorial/hac-vid.mov)
 
 The `OCDBoxTest>>#testMultipleBoxes` test iterates over 100 box objects, and to each box it sends the  `#addElement:` message. In this exercise, we select one box among all the iterated boxes, and we install a `haltOnCall` breakpoint on the `OCDBox>>#addElement:` method of that box. Then, we proceed the test and the  `#addElement:` message is sent to each of the boxes. The execution breaks only when the selected box executes the `OCDBox>>#addElement:` method.
 
@@ -60,7 +60,7 @@ The typical scenario for this breakpoint is when you have many instances of the 
 
 ### Exercise 2
 
-If you have trouble performing this exercise, you can find it realized in a 3 minutes video there: [https://kloum.io/costiou/haw-vid.mov](https://kloum.io/costiou/haw-vid.mov)
+If you have trouble performing this exercise, you can find it realized in a 3 minutes video there: [Halt on write video](./Assets/Tutorial/haw-vid.mov)
 
 In this exercise, we reuse our test iterating over a hundred box objects. We select again a box among all the iterated boxes, but this time we want to stop when the `name` instance variable of that box is written to. To that end, we install an object-centric breakpoint on all write accesses to that variable in the selected object. Then, we proceed the test and the execution only breaks when the name instance variable of the selected box is modified.
 
@@ -83,14 +83,14 @@ The breakpoint navigator gives us views and control over breakpoints installed i
 
 The navigator is accessible through Pharo main menu:
 
-![breakpoint-nav](https://github.com/StevenCostiou/Pharo-VariableBreakpoint-Tutorial/raw/main/pictures/breakpoint-bnav-menu.png)
+![breakpoint-nav](./Assets/Tutorial/breakpoint-bnav-menu.png)
 
 In this navigator (see screenshot below), you see the following elements: 
 1. The list of installed breakpoints in the system, 
 2. the list of methods affected by the selected breakpoint,
 3. the source code of the selected affected method, with the breakpoint locations highlighted.
 
-![breakpoint-nav-menu](https://github.com/StevenCostiou/Pharo-VariableBreakpoint-Tutorial/raw/main/pictures/breakpoint-navigator.png)
+![breakpoint-nav-menu](./Assets/Tutorial/breakpoint-navigator.png)
 
 To enable or disable a breakpoint, just tick and untick the checkbox of the breakpoint.
 Disabling a breakpoint does not uninstall it, but it stops having any effect.
