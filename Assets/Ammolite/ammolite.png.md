@@ -1,2 +1,0 @@
-# ./Assets/Ammolite/ammolite.png
-
