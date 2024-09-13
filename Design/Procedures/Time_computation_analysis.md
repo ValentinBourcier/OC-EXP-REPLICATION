@@ -75,26 +75,26 @@ Implementation numbering error. All cases 6 are cases 2, but may be labelled as 
 
 To perform the procedure failing in the aforementioned cases, all tasks of all participation corresponding to one of these cases are presented in a GUI list:
 
-![](../images/time-fix-main-entry.png)
+![](./Assets/time-fix-main-entry.png)
 
 The data is presented for each of these tasks with only the detected interruption duration, the declared interruption duration and the total amount of retained duration.
 We do not know if the task under observation is a control or a treatment task, nor for which participant.
 For each line in the list, we can either automatically fix the time if it fails into one of the obvious cases.
 When it does not (*e.g.*, case 4), the `Fix idle times...` action opens a new GUI that presents the logs where the gap was detected.
 
-![](../images/time-fix-each.png)
+![](./Assets/time-fix-each.png)
 
 For tasks failing in **case 4**, we look at these logs to try to understand if the detected time is really an interruption and write down in a comment field the evidence supporting this claim.
 In that case, we might observe logs indicating that we are observing the data of a treatment task (*e.g.*, object-centric breakpoint logs). 
 In the following screenshot, in the first columns we see the two events between which the time gap was detected.
 When we select one of these events, it is automatically selected in the second column in the flow of events of the task, and the third colum shows the details of that event.
 
-![](../images/time-fix-detail.png)
+![](./Assets/time-fix-detail.png)
 
 For transparency, we report that information in the comment.
 An example of case 4 time deduction:
 
-![](../images/time-fix-each-2.png)
+![](./Assets/time-fix-each-2.png)
 
  
 ## Threats to validity

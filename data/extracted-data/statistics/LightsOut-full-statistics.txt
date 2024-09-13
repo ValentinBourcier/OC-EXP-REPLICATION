@@ -3,13 +3,13 @@
 ├─time: <list>
 │ ├─shapiro: <list>
 │ │ ├─control: S3<htest>
-│ │ │ ├─statistic: 0.740633662100405
-│ │ │ ├─p.value: 7.92284099007527e-07
+│ │ │ ├─statistic: 0.740633662100404
+│ │ │ ├─p.value: 7.92284099007513e-07
 │ │ │ ├─method: "Shapiro-Wilk normality test"
 │ │ │ └─data.name: "controls"
 │ │ └─treatment: S3<htest>
 │ │   ├─statistic: 0.947758502118631
-│ │   ├─p.value: 0.10518701285673
+│ │   ├─p.value: 0.105187012856726
 │ │   ├─method: "Shapiro-Wilk normality test"
 │ │   └─data.name: "treatments"
 │ ├─p_value: 0.0316500956771592
@@ -32,12 +32,12 @@
 │ ├─shapiro: <list>
 │ │ ├─control: S3<htest>
 │ │ │ ├─statistic: 0.764187607043705
-│ │ │ ├─p.value: 2.10707079494674e-06
+│ │ │ ├─p.value: 2.10707079494675e-06
 │ │ │ ├─method: "Shapiro-Wilk normality test"
 │ │ │ └─data.name: "controls"
 │ │ └─treatment: S3<htest>
 │ │   ├─statistic: 0.551780625961725
-│ │   ├─p.value: 4.98203488469774e-09
+│ │   ├─p.value: 4.98203488469771e-09
 │ │   ├─method: "Shapiro-Wilk normality test"
 │ │   └─data.name: "treatments"
 │ ├─p_value: 0.208457175566828
@@ -48,7 +48,7 @@
 │ │ ├─control: 157.447368421053
 │ │ └─treatment: 220.911764705882
 │ ├─CV: <list>
-│ │ ├─control: 1.17052440079289
+│ │ ├─control: 1.1705244007929
 │ │ └─treatment: 1.48332195093407
 │ ├─vs_mpr: 1.12547697257092
 │ └─rrb: S3<effectsize_difference/effectsize_table/see_effectsize_table/data.frame>
