@@ -203,27 +203,35 @@ per_task_demographics_count <- function(data) {
     ammolite_tt <- valid_tt[valid_tt$treatment.task.name == "Ammolite", ] 
     lightsout_tt <- valid_tt[valid_tt$treatment.task.name == "Lights Out", ]
 
-    ammolite_ct_demographics <- 
-        cbind(ammolite_ct$education, ammolite_ct$job.position, ammolite_ct$program.exp, ammolite_ct$pharo.exp, ammolite_ct$pharo.frequency, ammolite_ct$code.frequency)
-    ammolite_tt_demographics <- 
-        cbind(ammolite_tt$education, ammolite_tt$job.position, ammolite_tt$program.exp, ammolite_tt$pharo.exp, ammolite_tt$pharo.frequency, ammolite_tt$code.frequency)
-   
     task_demographics_count("Ammolite", ammolite_ct, ammolite_tt)
     task_demographics_count("LightsOut", lightsout_ct, lightsout_tt)
    
+    chi_tests_ammolite <- list(
+        education = contingency(ammolite_ct$education, ammolite_tt$education)$p.value, 
+        job = contingency(ammolite_ct$job.position, ammolite_tt$job.position)$p.value, 
+        program.xp = contingency(ammolite_ct$pharo.exp, ammolite_tt$pharo.exp)$p.value,
+        pharo.xp = contingency(ammolite_ct$pharo.exp, ammolite_tt$pharo.exp)$p.value, 
+        code.freq = contingency(ammolite_ct$code.frequency, ammolite_tt$code.frequency)$p.value, 
+        pharo.freq = contingency(ammolite_ct$pharo.frequency, ammolite_tt$pharo.frequency)$p.value, 
+        debugger.familiarity = contingency(ammolite_ct$debugger.familiarity, ammolite_tt$debugger.familiarity)$p.value, 
+        ocd.familiarity = contingency(lightsout_tt$debugger.ocd.familarity, ammolite_tt$debugger.ocd.familarity)$p.value 
+    ) 
 
-    #pxp_mapping <- c("< 1" = 1, "1-2 years" = 2, "3-5 years" = 3, "6-10 years" = 4, "More than 10" = 5)
-    #pxp_ctrl <- data.frame(values =ammolite_ct_demographics[,4])
-    #pxp_ctrl$values <- pxp_mapping[pxp_ctrl$values]
-    #pxp_ctrl <- pxp_ctrl[!is.na(pxp_ctrl), ]
-    #print(pxp_ctrl)
+    chi_tests_lightsout <- list(
+        education = contingency(lightsout_ct$education, lightsout_tt$education)$p.value, 
+        job = contingency(lightsout_ct$job.position, lightsout_tt$job.position)$p.value, 
+        program.xp = contingency(lightsout_ct$pharo.exp, lightsout_tt$pharo.exp)$p.value,
+        pharo.xp = contingency(lightsout_ct$pharo.exp, lightsout_tt$pharo.exp)$p.value, 
+        code.freq = contingency(lightsout_ct$code.frequency, lightsout_tt$code.frequency)$p.value, 
+        pharo.freq = contingency(lightsout_ct$pharo.frequency, lightsout_tt$pharo.frequency)$p.value, 
+        debugger.familiarity = contingency(lightsout_ct$debugger.familiarity, lightsout_tt$debugger.familiarity)$p.value, 
+        ocd.familiarity = contingency(ammolite_tt$debugger.ocd.familarity, lightsout_tt$debugger.ocd.familarity)$p.value 
+    ) 
+  
+    capture.output(tree(chi_tests_ammolite), file = "./data/extracted-data/statistics/Ammolite-demographics-statistics.txt")
+    capture.output(tree(chi_tests_lightsout), file = "./data/extracted-data/statistics/LightsOut-demographics-statistics.txt")
+    write.csv(cbind(ammolite_ct$debugger.ocd.familarity, ammolite_tt$debugger.ocd.familarity), "ammolige_ocd_familiarity.csv")
 
-    #pxp_tt <- data.frame(values = ammolite_tt_demographics[,4])
-    #pxp_tt$values <- pxp_mapping[pxp_tt$values]
-    #pxp_tt <- pxp_tt[!is.na(pxp_tt), ]
-    #print(pxp_tt)
-
-    #print(wilcox.test(pxp_ctrl, pxp_tt, alternative="two.sided"))
 
     total_jobs <- count_choices(data$job.position, "Total Jobs", jobs)
     write.csv(total_jobs, "./data/extracted-data/demographics/total-jobs.csv")
