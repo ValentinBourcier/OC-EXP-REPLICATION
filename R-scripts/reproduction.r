@@ -7,7 +7,7 @@ options(repos = list(CRAN="http://cran.rstudio.com"))
 library(effectsize)
 library(Hmisc)
 library(lobstr)
-
+options(warn=-1)
 setwd(".")
 
 raw_data <- read.csv("data/data.csv")
@@ -72,3 +72,41 @@ capture.output(tree(controls_stats), file = "./data/extracted-data/controls/Cont
     lightsout_controls$control.task.time.in.seconds/60,
     ammolite_controls$control.task.actions,
     lightsout_controls$control.task.actions)
+
+
+# Tool usage
+detailed_tool_usage <- read.csv("data/detailed-tools-usage.csv", sep=";")
+tools_columns <- names(detailed_tool_usage)
+ammolite_tools_controls <- detailed_tool_usage[detailed_tool_usage$Ammolite_Condition=="control",]
+ammolite_tools_treatment <- detailed_tool_usage[detailed_tool_usage$Ammolite_Condition=="treatment",]
+
+print("###Ammolite tool usage")
+print("Avg debugger time in % of total time debugging")
+print("Control=")
+print(mean((ammolite_tools_controls$Ammolite_Debugger.time + ammolite_tools_controls$Ammolite_Inspector.time)/ammolite_tools_controls$total,na.rm = TRUE))
+print("Treatment=")
+print(mean((ammolite_tools_treatment$Ammolite_Debugger.time + ammolite_tools_treatment$Ammolite_Inspector.time)/ammolite_tools_treatment$total,na.rm = TRUE))
+
+print("Avg code navigation time in % of total time debugging")
+print("Control=")
+print(mean((ammolite_tools_controls$Ammolite_Browser.time + ammolite_tools_controls$Ammolite_Implementors.time + ammolite_tools_controls$Ammolite_Senders.time + ammolite_tools_controls$Ammolite_References.time)/ammolite_tools_controls$total,na.rm = TRUE))
+print("Treatment=")
+print(mean((ammolite_tools_treatment$Ammolite_Browser.time + ammolite_tools_treatment$Ammolite_Implementors.time + ammolite_tools_treatment$Ammolite_Senders.time + ammolite_tools_treatment$Ammolite_References.time)/ammolite_tools_treatment$total,na.rm = TRUE))
+
+
+Lights_Out_tools_controls <- detailed_tool_usage[detailed_tool_usage$Lights_Out_Condition=="control",]
+Lights_Out_tools_treatment <- detailed_tool_usage[detailed_tool_usage$Lights_Out_Condition=="treatment",]
+
+print("###Lights Out tool usage")
+print("Avg debugger time in % of total time debugging")
+print("Control=")
+print(mean((Lights_Out_tools_controls$Lights_Out_Debugger.time + Lights_Out_tools_controls$Lights_Out_Inspector.time)/Lights_Out_tools_controls$total,na.rm = TRUE))
+print("Treatment=")
+print(mean((Lights_Out_tools_treatment$Lights_Out_Debugger.time + Lights_Out_tools_treatment$Lights_Out_Inspector.time)/Lights_Out_tools_treatment$total,na.rm = TRUE))
+
+print("Avg code navigation time in % of total time debugging")
+print("Control=")
+print(mean((Lights_Out_tools_controls$Lights_Out_Browser.time + Lights_Out_tools_controls$Lights_Out_Implementors.time + Lights_Out_tools_controls$Lights_Out_Senders.time + Lights_Out_tools_controls$Lights_Out_References.time)/Lights_Out_tools_controls$total,na.rm = TRUE))
+print("Treatment=")
+print(mean((Lights_Out_tools_treatment$Lights_Out_Browser.time + Lights_Out_tools_treatment$Lights_Out_Implementors.time + Lights_Out_tools_treatment$Lights_Out_Senders.time + Lights_Out_tools_treatment$Lights_Out_References.time)/Lights_Out_tools_treatment$total,na.rm = TRUE))
+
