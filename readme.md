@@ -103,6 +103,8 @@ The directory is structured as follows:
     │   └── lightsout-yes-no.csv
     ├── questions-data-mapping.csv - Maps the name of each CSV file with the questions asked after each tasks and at the end of the experiment
     └── statistics - Contains the results of the statical tests (normality, significance) performed on Ammolite and Lights Out 
-        ├── Ammolite-full-statistics.txt
-        └── LightsOut-full-statistics.txt
+        ├── Ammolite-full-statistics.txt - Control-Treatment comparison for the Ammolite task
+        └── LightsOut-full-statistics.txt - Control-Treatment comparison for the Lights Out task
+        ├── Ammolite-demographics-statistics.txt - Control-Treatment demographics for the Ammolite task (only chi-squared p-values)
+        ├── Ammolite-full-statistics.txt - Control-Treatment demographics for the Lights Out task (only chi-squared p-values)
 ```
