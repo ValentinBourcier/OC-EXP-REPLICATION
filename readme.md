@@ -103,8 +103,13 @@ The directory is structured as follows:
     │   └── lightsout-yes-no.csv
     ├── questions-data-mapping.csv - Maps the name of each CSV file with the questions asked after each tasks and at the end of the experiment
     └── statistics - Contains the results of the statical tests (normality, significance) performed on Ammolite and Lights Out 
-        ├── Ammolite-full-statistics.txt - Control-Treatment comparison for the Ammolite task
-        └── LightsOut-full-statistics.txt - Control-Treatment comparison for the Lights Out task
-        ├── Ammolite-demographics-statistics.txt - Control-Treatment demographics for the Ammolite task (only chi-squared p-values)
-        ├── Ammolite-full-statistics.txt - Control-Treatment demographics for the Lights Out task (only chi-squared p-values)
+    │   ├── Ammolite-full-statistics.txt - Control-Treatment comparison for the Ammolite task
+    │   ├── LightsOut-full-statistics.txt - Control-Treatment comparison for the Lights Out task
+    │   ├── Ammolite-demographics-statistics.txt - Control-Treatment demographics for the Ammolite task (only chi-squared p-values)
+    │   └── Ammolite-full-statistics.txt - Control-Treatment demographics for the Lights Out task (only chi-squared p-values)
+    └── tools-usage - Contains the tools usage frequency per task and the statistical tests checking for a difference in tools usage between control and treatment (with the Benjamini-Hochberg procedure for limiting the false discovery rate).
+        ├── BenjaminiH-procedure-for-tools-usage-Ammolite.pdf
+        ├── BenjaminiH-procedure-for-tools-usage-LightsOut.pdf
+        ├── BenjaminiH-procedure-for-tools-usage.xlsx
+        └── detailed-tools-usage.csv
 ```
