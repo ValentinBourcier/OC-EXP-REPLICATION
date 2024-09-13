@@ -6,7 +6,7 @@ options(repos = list(CRAN="http://cran.rstudio.com"))
 #install.packages("lobstr")
 
 library(effectsize)
-library(Hmisc)
+library(Hmisc) 
 library(lobstr)
 options(warn=-1)
 setwd(".")
@@ -26,7 +26,7 @@ lightsout_controls <- valid_controls[valid_controls$control.task.name == "Lights
 
 valid_treatments <- treatements[treatements$treatment.task.validity == "true", ]
 ammolite_treatments <- valid_treatments[valid_treatments$treatment.task.name == "Ammolite", ] 
-lightsout_treatments <- valid_treatments[valid_treatments$treatment.task.name == "Lights Out", ]
+lightsout_treatments <- valid_treatments[valid_treatments$treatment.task.name == "Lights Out", ] # nolint
 
 ammolite_stats <- stats_task("Ammolite", ammolite_controls, ammolite_treatments)
 lightsout_stats <- stats_task("Lights Out", lightsout_controls, lightsout_treatments)
